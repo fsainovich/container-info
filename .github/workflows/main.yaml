@@ -21,6 +21,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           push: true
-          tags: 
-            - fsainovich/container-info:latest
-            - fsainovich/container-info:0.${{ github.run_number }}
+          tags: |
+            fsainovich/container-info:latest
+            fsainovich/container-info:0.${{ github.run_number }}
