@@ -12,7 +12,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           username: ${{ vars.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}      
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -23,4 +23,4 @@ jobs:
           push: true
           tags: 
             - fsainovich/container-info:latest
-            - fsainovich/container-info:0.${{ github.run_number }}"            
+            - fsainovich/container-info:0.${{ github.run_number }}
