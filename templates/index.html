@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if envvar %}
+<div>
+	<table id="data" class="table table-dark table-hover" >		
+		<thead>
+			<tr>
+				<th>Configuration</th>
+				<th>Value</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for k, v in envvar.items() %}
+			<tr>
+				<td>{{ k }}</td>
+				<td class="mt-auto text-white-50">{{ v }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</div>
+{% else %}
+<div class="box">
+	<p><strong>HOSTNAME and USER information not found for this container</strong></p>
+</div>
+{% endif %}
+{% endblock %}
