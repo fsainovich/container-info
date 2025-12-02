@@ -22,5 +22,5 @@ jobs:
         with:
           push: true
           tags: 
-            - fsainovich/c_info:latest
-            - fsainovich/c_info:0.${{ github.run_number }}"            
+            - fsainovich/container-info:latest
+            - fsainovich/container-info:0.${{ github.run_number }}"            
