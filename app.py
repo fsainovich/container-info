@@ -15,7 +15,7 @@ def index():
     env_vars=os.environ.items()
     config = os.getenv('CONFIG').split(",")
     config_upper = [s.upper() for s in config]
-
+    print("ENV_VARS:", env_vars)
     if config_upper:
         print("CONFIG is present:", config_upper)
         for k, v in env_vars:            
