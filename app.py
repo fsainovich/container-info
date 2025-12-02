@@ -8,13 +8,14 @@ csrf = CSRFProtect()
 csrf.init_app(app)
 
 data = {}
-env_vars=os.environ.items()
-config = os.getenv('CONFIG').split(",")
-config_upper = [s.upper() for s in config]
 
 @app.route('/')
 def index():
-    
+
+    env_vars=os.environ.items()
+    config = os.getenv('CONFIG').split(",")
+    config_upper = [s.upper() for s in config]
+
     if config_upper:
         print("CONFIG is present:", config_upper)
         for k, v in env_vars:            
