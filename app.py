@@ -19,11 +19,12 @@ def health_check():
 @app.route('/')
 def index():
     try:    
-        config = os.getenv('CONFIG').split(",")
+        config = os.getenv('CONFIG')
     except ValueError:
         config = None
             
     if config:
+        config = config.split(",")
         config_upper = [s.upper() for s in config]
         print("CONFIG is present:", config_upper)
         for k, v in env_vars:            
