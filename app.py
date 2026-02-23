@@ -9,21 +9,29 @@ csrf.init_app(app)
 
 data = {}
 
+env_vars=os.environ.items()
+print("ENV_VARS:", env_vars)
+
+@app.route('/health')
+def health_check():    
+    return "OK"    
+
 @app.route('/')
 def index():
-
-    env_vars=os.environ.items()
-    config = os.getenv('CONFIG').split(",")
-    config_upper = [s.upper() for s in config]
-    print("ENV_VARS:", env_vars)
-    if config_upper:
+    try:    
+        config = os.getenv('CONFIG').split(",")
+    except ValueError:
+        config = None
+            
+    if config:
+        config_upper = [s.upper() for s in config]
         print("CONFIG is present:", config_upper)
         for k, v in env_vars:            
             if k.upper() in config_upper:
                 data[k.upper()]=v                
             else:
                 continue
-        print(data)
+        #print(data)
         return render_template('index.html', envvar=data )
     else:
         for k, v in env_vars:        
