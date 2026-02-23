@@ -16,6 +16,35 @@ print("ENV_VARS:", env_vars)
 def health_check():    
     return "OK"    
 
+@app.route('/api')
+def api():
+    try:
+        config = os.getenv('CONFIG')
+    except ValueError:
+        config = None
+
+    if config:
+        config = config.split(",")
+        config_upper = [s.upper() for s in config]
+        print("CONFIG is present:", config_upper)
+        for k, v in env_vars:
+            if k.upper() in config_upper:
+                data[k.upper()]=v
+            else:
+                continue
+        #print(data)
+        return data
+    else:
+        for k, v in env_vars:
+            match k:
+                case "HOSTNAME":
+                    data[k]=v
+                case "USER":
+                    data[k]=v
+                case _:
+                    continue
+        return data
+
 @app.route('/')
 def index():
     try:    
